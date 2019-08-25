@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * CreateCell
  * @author Administrator
  * @version 1.0
- *设置边框
+ *读取并回写
  */
 public class ReadAndWrite {
 
@@ -30,18 +30,22 @@ public class ReadAndWrite {
      * @param args
      */
     public static void main(String[] args) throws Exception{
-       InputStream inputStream = new FileInputStream("E://用poi创建的工作簿.xls");
-       POIFSFileSystem fileSystem = new POIFSFileSystem(inputStream);
-       Workbook workbook = new HSSFWorkbook(fileSystem);
-       Sheet sheet = workbook.getSheetAt(0);
-       Row row = sheet.getRow(0);//获取第一行
-       Cell cell = row.getCell(0);//获取单元格
-       
-       
+    	
+	    InputStream inputStream = new FileInputStream("E://工作簿.xls");
+	    POIFSFileSystem fileSystem = new POIFSFileSystem(inputStream);
+	    Workbook workbook = new HSSFWorkbook(fileSystem);
+	    Sheet sheet = workbook.getSheetAt(0);
+	    Row row = sheet.getRow(0);//获取第一行
+	    Cell cell = row.getCell(0);//获取单元格
+	    if (cell==null) {
+	    	cell=row.createCell(3);
+	    }
+	    cell.setCellType(Cell.CELL_TYPE_STRING);
+	    cell.setCellValue("测试单元格");
         
-        FileOutputStream fileOutputStream = new FileOutputStream("E://字体样式.xls");
-        workbook.write(fileOutputStream);
-        workbook.close();
+		FileOutputStream fileOutputStream = new FileOutputStream("E://工作簿.xls");
+		workbook.write(fileOutputStream);
+		workbook.close();
     }
 
 }
