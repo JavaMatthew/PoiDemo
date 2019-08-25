@@ -22,7 +22,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
  * @version 1.0
  *合并单元格
  */
-public class mergeCell {
+public class MergeCell {
 
     /**
      * @param args
