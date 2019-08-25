@@ -7,6 +7,7 @@
 
 #编译文件
 *.class
+*.classpath
 
 
 #包文件
